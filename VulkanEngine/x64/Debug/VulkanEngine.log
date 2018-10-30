@@ -1,0 +1,61 @@
+﻿  Window.cpp
+c:\users\nprotaso\source\repos\vulkanengine\vulkanengine\window.cpp(41): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
+  c:\users\nprotaso\source\repos\vulkanengine\include\sdl_video.h(90): note: see declaration of 'SDL_Window'
+c:\users\nprotaso\source\repos\vulkanengine\vulkanengine\window.cpp(63): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
+  c:\users\nprotaso\source\repos\vulkanengine\include\sdl_video.h(90): note: see declaration of 'SDL_Window'
+  VulkanSystem.cpp
+  VulkanInstance.cpp
+  VulkanElement.cpp
+  VulkanApplication.cpp
+  main.cpp
+  Log.cpp
+  Application.cpp
+  Generating Code...
+LINK : error LNK2001: unresolved external symbol main()
+Application.obj : error LNK2001: unresolved external symbol _purecall
+VulkanSystem.obj : error LNK2001: unresolved external symbol __imp__invalid_parameter
+Window.obj : error LNK2001: unresolved external symbol __imp__invalid_parameter
+Log.obj : error LNK2001: unresolved external symbol __imp__invalid_parameter
+main.obj : error LNK2001: unresolved external symbol __imp__invalid_parameter
+VulkanApplication.obj : error LNK2001: unresolved external symbol __imp__invalid_parameter
+VulkanInstance.obj : error LNK2001: unresolved external symbol __imp__invalid_parameter
+VulkanSystem.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+Window.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+MSVCRTD.lib(gshandlereh.obj) : error LNK2001: unresolved external symbol __CxxFrameHandler3
+Log.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+main.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+VulkanApplication.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+VulkanInstance.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+Window.obj : error LNK2019: unresolved external symbol memcpy referenced in function "void * __cdecl std::_Allocate(unsigned __int64,unsigned __int64,bool)" (?_Allocate@std@@YAPEAX_K0_N@Z)
+main.obj : error LNK2001: unresolved external symbol memcpy
+VulkanApplication.obj : error LNK2001: unresolved external symbol memcpy
+VulkanInstance.obj : error LNK2001: unresolved external symbol memcpy
+VulkanSystem.obj : error LNK2001: unresolved external symbol memcpy
+main.obj : error LNK2019: unresolved external symbol memmove referenced in function "public: static char * __cdecl std::char_traits<char>::move(char * const,char const * const,unsigned __int64)" (?move@?$char_traits@D@std@@SAPEADQEADQEBD_K@Z)
+VulkanSystem.obj : error LNK2001: unresolved external symbol memmove
+main.obj : error LNK2019: unresolved external symbol strlen referenced in function "public: static unsigned __int64 __cdecl std::char_traits<char>::length(char const * const)" (?length@?$char_traits@D@std@@SA_KQEBD@Z)
+VulkanSystem.obj : error LNK2001: unresolved external symbol strlen
+Window.obj : error LNK2019: unresolved external symbol __imp__CrtDbgReportW referenced in function "int `public: __cdecl std::_String_val<struct std::_Simple_types<char> >::_String_val<struct std::_Simple_types<char> >(void)'::`1'::dtor$0" (?dtor$0@?0???0?$_String_val@U?$_Simple_types@D@std@@@std@@QEAA@XZ@4HA)
+main.obj : error LNK2001: unresolved external symbol __imp__CrtDbgReportW
+VulkanApplication.obj : error LNK2001: unresolved external symbol __imp__CrtDbgReportW
+VulkanInstance.obj : error LNK2001: unresolved external symbol __imp__CrtDbgReportW
+VulkanSystem.obj : error LNK2001: unresolved external symbol __imp__CrtDbgReportW
+MSVCRTD.lib(_init_.obj) : error LNK2019: unresolved external symbol _CrtDbgReport referenced in function _CRT_RTC_INIT
+MSVCRTD.lib(_init_.obj) : error LNK2019: unresolved external symbol _CrtDbgReportW referenced in function _CRT_RTC_INITW
+MSVCRTD.lib(delete_scalar.obj) : error LNK2019: unresolved external symbol _free_dbg referenced in function "void __cdecl operator delete(void *)" (??3@YAXPEAX@Z)
+MSVCRTD.lib(new_scalar.obj) : error LNK2019: unresolved external symbol _callnewh referenced in function "void * __cdecl operator new(unsigned __int64)" (??2@YAPEAX_K@Z)
+MSVCRTD.lib(new_scalar.obj) : error LNK2019: unresolved external symbol malloc referenced in function "void * __cdecl operator new(unsigned __int64)" (??2@YAPEAX_K@Z)
+MSVCRTD.lib(_error_.obj) : error LNK2019: unresolved external symbol strcpy_s referenced in function "void __cdecl _RTC_StackFailure(void *,char const *)" (?_RTC_StackFailure@@YAXPEAXPEBD@Z)
+MSVCRTD.lib(_error_.obj) : error LNK2019: unresolved external symbol strcat_s referenced in function "void __cdecl _RTC_StackFailure(void *,char const *)" (?_RTC_StackFailure@@YAXPEAXPEBD@Z)
+MSVCRTD.lib(_error_.obj) : error LNK2019: unresolved external symbol __stdio_common_vsprintf_s referenced in function _vsprintf_s_l
+MSVCRTD.lib(_error_.obj) : error LNK2001: unresolved external symbol __C_specific_handler
+MSVCRTD.lib(throw_bad_alloc.obj) : error LNK2019: unresolved external symbol __std_exception_copy referenced in function "public: __cdecl std::exception::exception(class std::exception const &)" (??0exception@std@@QEAA@AEBV01@@Z)
+MSVCRTD.lib(throw_bad_alloc.obj) : error LNK2019: unresolved external symbol __std_exception_destroy referenced in function "public: virtual __cdecl std::exception::~exception(void)" (??1exception@std@@UEAA@XZ)
+MSVCRTD.lib(throw_bad_alloc.obj) : error LNK2019: unresolved external symbol _CxxThrowException referenced in function "void __cdecl __scrt_throw_std_bad_alloc(void)" (?__scrt_throw_std_bad_alloc@@YAXXZ)
+MSVCRTD.lib(_pdblkup_.obj) : error LNK2019: unresolved external symbol _wmakepath_s referenced in function "int __cdecl GetPdbDllPathFromFilePath(wchar_t const *,wchar_t *,unsigned __int64)" (?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z)
+MSVCRTD.lib(_pdblkup_.obj) : error LNK2019: unresolved external symbol _wsplitpath_s referenced in function "int __cdecl GetPdbDllPathFromFilePath(wchar_t const *,wchar_t *,unsigned __int64)" (?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z)
+MSVCRTD.lib(_pdblkup_.obj) : error LNK2019: unresolved external symbol wcscpy_s referenced in function "int __cdecl GetPdbDllPathFromFilePath(wchar_t const *,wchar_t *,unsigned __int64)" (?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z)
+MSVCRTD.lib(_pdblkup_.obj) : error LNK2019: unresolved external symbol __vcrt_GetModuleFileNameW referenced in function "struct HINSTANCE__ * __cdecl GetPdbDll(void)" (?GetPdbDll@@YAPEAUHINSTANCE__@@XZ)
+MSVCRTD.lib(_pdblkup_.obj) : error LNK2019: unresolved external symbol __vcrt_GetModuleHandleW referenced in function "struct HINSTANCE__ * __cdecl GetPdbDll(void)" (?GetPdbDll@@YAPEAUHINSTANCE__@@XZ)
+MSVCRTD.lib(_pdblkup_.obj) : error LNK2019: unresolved external symbol __vcrt_LoadLibraryExW referenced in function "struct HINSTANCE__ * __cdecl GetPdbDll(void)" (?GetPdbDll@@YAPEAUHINSTANCE__@@XZ)
+C:\Users\nprotaso\source\repos\VulkanEngine\x64\Debug\VulkanEngine.exe : fatal error LNK1120: 26 unresolved externals
