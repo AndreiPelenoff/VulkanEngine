@@ -4,6 +4,7 @@
 
 VulkanElement::VulkanElement()
 {
+    m_init = false;
 }
 
 

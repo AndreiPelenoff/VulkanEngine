@@ -136,6 +136,9 @@
     <ClCompile Include="VulkanApplication.cpp" />
     <ClCompile Include="VulkanElement.cpp" />
     <ClCompile Include="VulkanInstance.cpp" />
+    <ClCompile Include="VulkanPhysicalDevice.cpp" />
+    <ClCompile Include="VulkanQueueFamilies.cpp" />
+    <ClCompile Include="VulkanSurface.cpp" />
     <ClCompile Include="VulkanSystem.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -145,6 +148,9 @@
     <ClInclude Include="VulkanApplication.h" />
     <ClInclude Include="VulkanElement.h" />
     <ClInclude Include="VulkanInstance.h" />
+    <ClInclude Include="VulkanPhysicalDevice.h" />
+    <ClInclude Include="VulkanQueueFamilies.h" />
+    <ClInclude Include="VulkanSurface.h" />
     <ClInclude Include="VulkanSystem.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

@@ -37,7 +37,7 @@ VulkanInstance::VulkanInstance(SDL_Window* window, std::string application_name,
 {
 }
 
-bool VulkanInstance::init()
+bool VulkanInstance::init(VulkanElement* element)
 {
     VkResult result = vkCreateInstance(&m_createInfo, nullptr, &m_instance);
 

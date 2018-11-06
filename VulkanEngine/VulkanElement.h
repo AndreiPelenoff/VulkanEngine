@@ -7,7 +7,7 @@ class VulkanElement
 public:
     VulkanElement();
 
-    virtual bool init() = 0;
+    virtual bool init(VulkanElement* vulkanElement = nullptr) = 0;
 
     virtual bool destroy() = 0;
 
