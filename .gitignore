@@ -340,3 +340,8 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+*.exe
+*.obj
+*.pdb
+*.ipdb
