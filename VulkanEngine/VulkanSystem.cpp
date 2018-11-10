@@ -11,6 +11,7 @@ VulkanSystem::VulkanSystem(Window* window, std::string application_name) : m_win
     m_surface = NULL;
     m_queueFamilies = NULL;
     m_logicalDevice = NULL;
+    m_commandPool = NULL;
 }
 
 bool VulkanSystem::init(VulkanElement* element)
@@ -46,6 +47,14 @@ bool VulkanSystem::init(VulkanElement* element)
     }
 
     m_logicalDevice = new VulkanLogicalDevice();
+    if (!m_logicalDevice->init(this))
+    {
+        m_init = false;
+
+        return false;
+    }
+
+    m_commandPool = new VulkanCommandPool();
     if (!m_logicalDevice->init(this))
     {
         m_init = false;

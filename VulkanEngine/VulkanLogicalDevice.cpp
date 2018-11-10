@@ -65,6 +65,8 @@ bool VulkanLogicalDevice::init(VulkanElement* system)
     vkGetDeviceQueue(m_device, ((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex(), 0, &m_graphicsQueue);
     vkGetDeviceQueue(m_device, ((VulkanSystem*)system)->m_queueFamilies->getTransferFamilyQueueIndex(), 0, &m_presentQueue);
 
+    m_init = true;
+
     return true;
 }
 
@@ -83,4 +85,5 @@ bool VulkanLogicalDevice::destroy()
 
 VulkanLogicalDevice::~VulkanLogicalDevice()
 {
+    destroy();
 }

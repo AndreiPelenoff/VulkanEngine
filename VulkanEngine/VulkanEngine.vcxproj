@@ -134,6 +134,8 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="VulkanApplication.cpp" />
+    <ClCompile Include="VulkanCommandBuffer.cpp" />
+    <ClCompile Include="VulkanCommandPool.cpp" />
     <ClCompile Include="VulkanElement.cpp" />
     <ClCompile Include="VulkanInstance.cpp" />
     <ClCompile Include="VulkanLogicalDevice.cpp" />
@@ -147,6 +149,8 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="VulkanApplication.h" />
+    <ClInclude Include="VulkanCommandBuffer.h" />
+    <ClInclude Include="VulkanCommandPool.h" />
     <ClInclude Include="VulkanElement.h" />
     <ClInclude Include="VulkanInstance.h" />
     <ClInclude Include="VulkanLogicalDevice.h" />
