@@ -11,10 +11,14 @@ class VulkanLogicalDevice: public VulkanElement
 public:
     VulkanLogicalDevice();
 
-    bool init(VulkanElement* physicalDevice);
+    bool init(VulkanElement* system);
     bool destroy();
 
     ~VulkanLogicalDevice();
+
+    VkDevice m_device;
+    VkQueue m_graphicsQueue;
+    VkQueue m_presentQueue;
 };
 
 #endif

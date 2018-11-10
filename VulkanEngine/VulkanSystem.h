@@ -12,6 +12,7 @@
 #include "VulkanPhysicalDevice.h"
 #include "VulkanSurface.h"
 #include "VulkanQueueFamilies.h"
+#include "VulkanLogicalDevice.h"
 
 class VulkanSystem : public VulkanElement
 {
@@ -29,6 +30,7 @@ public:
     VulkanPhysicalDevice* m_physicalDevice;
     VulkanSurface* m_surface;
     VulkanQueueFamilies* m_queueFamilies;
+    VulkanLogicalDevice* m_logicalDevice;
 
     Window* m_window;
 

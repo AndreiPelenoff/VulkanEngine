@@ -54,6 +54,9 @@
     <ClCompile Include="VulkanSurface.cpp">
       <Filter>Source Files\Vulkan</Filter>
     </ClCompile>
+    <ClCompile Include="VulkanLogicalDevice.cpp">
+      <Filter>Source Files\Vulkan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="VulkanSurface.h">
+      <Filter>Header Files\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanLogicalDevice.h">
       <Filter>Header Files\Vulkan</Filter>
     </ClInclude>
   </ItemGroup>

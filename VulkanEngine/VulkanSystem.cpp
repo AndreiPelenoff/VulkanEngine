@@ -10,6 +10,7 @@ VulkanSystem::VulkanSystem(Window* window, std::string application_name) : m_win
     m_physicalDevice = NULL;
     m_surface = NULL;
     m_queueFamilies = NULL;
+    m_logicalDevice = NULL;
 }
 
 bool VulkanSystem::init(VulkanElement* element)
@@ -38,6 +39,14 @@ bool VulkanSystem::init(VulkanElement* element)
 
     m_queueFamilies = new VulkanQueueFamilies();
     if (!m_queueFamilies->init(m_physicalDevice))
+    {
+        m_init = false;
+
+        return false;
+    }
+
+    m_logicalDevice = new VulkanLogicalDevice();
+    if (!m_logicalDevice->init(this))
     {
         m_init = false;
 

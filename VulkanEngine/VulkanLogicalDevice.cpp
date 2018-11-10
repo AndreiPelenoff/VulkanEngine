@@ -1,3 +1,8 @@
+#include <set>
+
+#include "VulkanPhysicalDevice.h"
+#include "VulkanSystem.h"
+
 #include "VulkanLogicalDevice.h"
 
 
@@ -6,14 +11,16 @@ VulkanLogicalDevice::VulkanLogicalDevice()
 {
 }
 
-bool VulkanLogicalDevice::init(VulkanElement* physicalDevice)
+bool VulkanLogicalDevice::init(VulkanElement* system)
 {
     //QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
     VkDeviceQueueCreateInfo queueCreateInfo = {};
     queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
+    queueCreateInfo.queueFamilyIndex = ((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex();
     queueCreateInfo.queueCount = 1;
+
+    std::set<uint32_t> uniqueQueueFamilies = { static_cast<uint32_t>(((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex()),   static_cast<uint32_t>(((VulkanSystem*)system)->m_queueFamilies->getTransferFamilyQueueIndex())};
 
     float queuePriority = 1.0f;
     queueCreateInfo.pQueuePriorities = &queuePriority;
@@ -30,20 +37,18 @@ bool VulkanLogicalDevice::init(VulkanElement* physicalDevice)
 
     createInfo.pEnabledFeatures = &deviceFeatures;
 
-
     createInfo.enabledLayerCount = 0;
 
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
-    createInfo.ppEnabledExtensionNames = deviceExtensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(((VulkanSystem*)system)->m_deviceExtensions.size());
+    createInfo.ppEnabledExtensionNames = ((VulkanSystem*)system)->m_deviceExtensions.data();
 
-    if (vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) != VK_SUCCESS) {
-        std::cout << "failed to create logical device!" << std::endl;
+    if (vkCreateDevice(((VulkanSystem*)system)->m_physicalDevice->m_device, &createInfo, nullptr, &m_device) != VK_SUCCESS) {
+        m_init = false;
 
         return false;
     }
 
     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
-    std::set<uint32_t> uniqueQueueFamilies = { indices.graphicsFamily.value(), indices.presentFamily.value() };
 
     for (uint32_t queueFamily : uniqueQueueFamilies) {
         VkDeviceQueueCreateInfo queueCreateInfo = {};
@@ -57,8 +62,20 @@ bool VulkanLogicalDevice::init(VulkanElement* physicalDevice)
     createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
     createInfo.pQueueCreateInfos = queueCreateInfos.data();
 
-    vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
-    vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
+    vkGetDeviceQueue(m_device, ((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex(), 0, &m_graphicsQueue);
+    vkGetDeviceQueue(m_device, ((VulkanSystem*)system)->m_queueFamilies->getTransferFamilyQueueIndex(), 0, &m_presentQueue);
+
+    return true;
+}
+
+bool VulkanLogicalDevice::destroy()
+{
+    if (m_init)
+    {
+        m_init = false;
+
+        vkDestroyDevice(m_device, NULL);
+    }
 
     return true;
 }
