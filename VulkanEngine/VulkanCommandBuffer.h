@@ -17,6 +17,12 @@ public:
     bool reset(int buffer_number);
     bool free();
 
+    //TODO separate to different functions by flags
+    bool beginCommandBuffer(int buffer_number, VkCommandBufferUsageFlagBits flags);
+    bool beginCommandBuffer(int buffer_number, VkCommandBufferUsageFlagBits flags, VkCommandBufferInheritanceInfo inheritanceInfo);
+
+    bool endCommandBuffer(int buffer_number);
+
     ~VulkanCommandBuffer();
 
     std::vector<VkCommandBuffer> m_commandBuffers;

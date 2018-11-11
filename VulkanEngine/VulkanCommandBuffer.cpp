@@ -48,10 +48,42 @@ bool VulkanCommandBuffer::reset(int buffer_number)
 
 bool VulkanCommandBuffer::free()
 {
-    vkFreeCommandBuffers(m_commandPool->m_device, m_commandPool->m_commandPool, m_commandBuffers.size(), m_commandBuffers.data());
+    vkFreeCommandBuffers(m_commandPool->m_device, m_commandPool->m_commandPool, m_commandBuffers.size(), m_commandBuffers.data());
+
     return true;
 }
 
+
+bool VulkanCommandBuffer::beginCommandBuffer(int buffer_number, VkCommandBufferUsageFlagBits flags)
+{
+    VkCommandBufferBeginInfo beginInfo = {};
+    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+    beginInfo.flags = flags;
+    beginInfo.pInheritanceInfo = nullptr; // Optional
+
+    if (vkBeginCommandBuffer(m_commandBuffers[buffer_number], &beginInfo) != VK_SUCCESS) 
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool VulkanCommandBuffer::beginCommandBuffer(int buffer_number, VkCommandBufferUsageFlagBits flags, VkCommandBufferInheritanceInfo inheritanceInfo)
+{
+    //TODO should realise later with objects RenderPas, FrameBuffer and so on
+    return false;
+}
+
+bool VulkanCommandBuffer::endCommandBuffer(int buffer_number)
+{
+    if (vkEndCommandBuffer(m_commandBuffers[buffer_number]) != VK_SUCCESS)
+    {
+        return false;
+    }
+
+    return true;
+}
 
 
 VulkanCommandBuffer::~VulkanCommandBuffer()
