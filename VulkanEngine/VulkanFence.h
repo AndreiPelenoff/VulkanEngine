@@ -22,6 +22,7 @@ public:
 
     bool reset();
 
+    bool waitFence(long timeout = 10);
     bool static waitFences(VulkanFence** fences, bool waitAll = true, long timeout = 10);
 
     bool importPayLoad(int importFd, VkFenceImportFlags importFlags, VkExternalFenceHandleTypeFlagBits handleType);

@@ -75,6 +75,11 @@ bool VulkanFence::reset()
     return false;
 }
 
+bool VulkanFence::waitFence(long timeout = 10)
+{
+    vkWaitForFences(m_device, 1, &m_fence, true, timeout);
+}
+
 bool VulkanFence::waitFences(VulkanFence** fences, bool waitAll, long timeout)
 {
     std::vector<VkFence> vulkanFences;
