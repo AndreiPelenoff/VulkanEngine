@@ -17,7 +17,7 @@ public:
     bool initForExport(VulkanElement* device, VkExternalFenceHandleTypeFlags handleTypes);
     bool destroy();
 
-    int getHandle();
+    int getHandle(VkExternalFenceHandleTypeFlagBits handleType);
     VkResult getStatus();
 
     bool reset();

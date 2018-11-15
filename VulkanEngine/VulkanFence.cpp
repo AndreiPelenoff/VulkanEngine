@@ -45,19 +45,21 @@ bool VulkanFence::destroy()
     return true;
 }
 
-int VulkanFence::getHandle()
+int VulkanFence::getHandle(VkExternalFenceHandleTypeFlagBits handleType)
 {
+    //TODO fix error
+    /*
     //TODO for windows this should be another version
-    VkFenceGetFdInfoKHR getHandleInfo;
-    getHandleInfo.sType = VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR;
-    getHandleInfo.fence = m_fence;
-    getHandleInfo.pNext = NULL;
-    getHandleInfo.handleType = m_handleTypeFlags;
-
+    VkFenceGetFdInfoKHR infoFd;
+    infoFd.sType = VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR;
+    infoFd.fence = m_fence;
+    infoFd.pNext = NULL;
+    infoFd.handleType = handleType;
 
     int handle;
 
-    if (vkGetFenceFdKHR(m_device, &getHandleInfo, &handle) != VK_SUCCESS)    {        return -1;    }    return handle;
+    if (vkGetFenceFdKHR(m_device, &infoFd, &handle) != VK_SUCCESS)    {        return -1;    }    return handle;
+    */
 }
 
 VkResult VulkanFence::getStatus()
