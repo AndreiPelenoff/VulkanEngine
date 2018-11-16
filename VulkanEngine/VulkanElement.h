@@ -11,9 +11,9 @@ class VulkanElement
 public:
     VulkanElement();
 
-    virtual bool init(SharedPtr<VulkanElement> vulkanElement);
+    virtual bool init(SharedPtr<VulkanElement> vulkanElement) = 0;
 
-    virtual bool destroy();
+    virtual bool destroy() = 0;
 
     bool isInit()
     {
