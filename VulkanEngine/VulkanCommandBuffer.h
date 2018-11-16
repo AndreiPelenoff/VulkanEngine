@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "VulkanElement.h"
+#include "VulkanCommandBuffer.h"
 
 class VulkanCommandBuffer: public VulkanElement
 {

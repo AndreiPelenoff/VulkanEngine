@@ -137,6 +137,7 @@
     <ClCompile Include="VulkanCommandBuffer.cpp" />
     <ClCompile Include="VulkanCommandPool.cpp" />
     <ClCompile Include="VulkanElement.cpp" />
+    <ClCompile Include="VulkanEvent.cpp" />
     <ClCompile Include="VulkanFence.cpp" />
     <ClCompile Include="VulkanInstance.cpp" />
     <ClCompile Include="VulkanLogicalDevice.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="VulkanCommandBuffer.h" />
     <ClInclude Include="VulkanCommandPool.h" />
     <ClInclude Include="VulkanElement.h" />
+    <ClInclude Include="VulkanEvent.h" />
     <ClInclude Include="VulkanFence.h" />
     <ClInclude Include="VulkanInstance.h" />
     <ClInclude Include="VulkanLogicalDevice.h" />
