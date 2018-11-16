@@ -8,14 +8,14 @@ VulkanCommandPool::VulkanCommandPool()
 {
 }
 
-bool VulkanCommandPool::init(VulkanElement* vulkanSystem)
+bool VulkanCommandPool::init(SharedPtr<VulkanElement> vulkanSystem)
 {
     VkCommandPoolCreateInfo poolInfo = {};
     poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-    poolInfo.queueFamilyIndex = ((VulkanSystem*)(vulkanSystem))->m_queueFamilies->getGraphicFamilyQueueIndex();
+    poolInfo.queueFamilyIndex = (std::dynamic_pointer_cast<VulkanSystem>(vulkanSystem)->m_queueFamilies->getGraphicFamilyQueueIndex());
     poolInfo.flags = 0; // Optional
 
-    m_device = ((VulkanSystem*)(vulkanSystem))->m_logicalDevice->m_device;
+    m_device = std::dynamic_pointer_cast<VulkanSystem>(vulkanSystem)->m_logicalDevice->m_device;
 
     if (vkCreateCommandPool(m_device, &poolInfo, nullptr, &m_commandPool) != VK_SUCCESS) {
 

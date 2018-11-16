@@ -7,17 +7,17 @@ VulkanFence::VulkanFence()
 {
 }
 
-bool VulkanFence::init(VulkanElement* device)
+bool VulkanFence::init(SharedPtr<VulkanElement> device)
 {
     VkFenceCreateInfo createInfo;
     createInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
     createInfo.pNext = NULL;
     createInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-    if (vkCreateFence(((VulkanLogicalDevice*)device)->m_device, &createInfo, nullptr, &m_fence) != VK_SUCCESS)    {        m_init = false;        return false;    }    m_device = ((VulkanLogicalDevice*)device)->m_device;    m_init = true;    return true;
+    if (vkCreateFence(std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device, &createInfo, nullptr, &m_fence) != VK_SUCCESS)    {        m_init = false;        return false;    }    m_device = std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device;    m_init = true;    return true;
 }
 
-bool VulkanFence::initForExport(VulkanElement* device, VkExternalFenceHandleTypeFlags handleTypes)
+bool VulkanFence::initForExport(SharedPtr<VulkanElement> device, VkExternalFenceHandleTypeFlags handleTypes)
 {
     if (m_init)
     {
@@ -34,7 +34,7 @@ bool VulkanFence::initForExport(VulkanElement* device, VkExternalFenceHandleType
     createInfo.pNext = &exportCreateInfo;
     createInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-    if (vkCreateFence(((VulkanLogicalDevice*)device)->m_device, &createInfo, nullptr, &m_fence) != VK_SUCCESS)    {        m_init = false;        return false;    }    m_device = ((VulkanLogicalDevice*)device)->m_device;    m_handleTypeFlags = handleTypes;    m_init = true;    return true;
+    if (vkCreateFence(std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device, &createInfo, nullptr, &m_fence) != VK_SUCCESS)    {        m_init = false;        return false;    }    m_device = std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device;    m_handleTypeFlags = handleTypes;    m_init = true;    return true;
 }
 
 bool VulkanFence::destroy()

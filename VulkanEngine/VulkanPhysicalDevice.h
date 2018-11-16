@@ -20,7 +20,7 @@ public:
 
     bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 
-    bool init(VulkanElement* instance = NULL);
+    bool init(SharedPtr<VulkanElement> instance = NULL);
     bool destroy();
 
     uint32_t getApiVersion();

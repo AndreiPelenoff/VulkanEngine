@@ -11,7 +11,7 @@ class VulkanCommandBuffer: public VulkanElement
 public:
     VulkanCommandBuffer();
 
-    bool init(VulkanElement* vulkanSystem);
+    bool init(SharedPtr<VulkanElement> vulkanSystem);
     bool destroy();
 
     bool reset(int buffer_number);
@@ -26,7 +26,7 @@ public:
     ~VulkanCommandBuffer();
 
     std::vector<VkCommandBuffer> m_commandBuffers;
-    VulkanCommandPool* m_commandPool;
+    SharedPtr<VulkanCommandPool> m_commandPool;
 };
 
 #endif // !VULKAN_COMMAND_BUFFER

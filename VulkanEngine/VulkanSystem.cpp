@@ -6,7 +6,7 @@ VulkanSystem::VulkanSystem()
 
 VulkanSystem::VulkanSystem(Window* window, std::string application_name) : m_window(window)
 {
-    m_instance = new VulkanInstance(window->window, application_name, "vulka", m_vulkanVersion);
+    m_instance = std::make_shared<VulkanInstance>(window->window, application_name, "vulkan", m_vulkanVersion);
     m_physicalDevice = NULL;
     m_surface = NULL;
     m_queueFamilies = NULL;
@@ -14,7 +14,7 @@ VulkanSystem::VulkanSystem(Window* window, std::string application_name) : m_win
     m_commandPool = NULL;
 }
 
-bool VulkanSystem::init(VulkanElement* element)
+bool VulkanSystem::init(SharedPtr<VulkanElement> element)
 {
     if (!m_instance->init())
     {
@@ -22,7 +22,7 @@ bool VulkanSystem::init(VulkanElement* element)
         return false;
     }
 
-    m_physicalDevice = new VulkanPhysicalDevice(m_deviceExtensions);
+    m_physicalDevice = std::make_shared<VulkanPhysicalDevice>(m_deviceExtensions);
 
     if (!m_physicalDevice->init(m_instance))
     {
@@ -30,15 +30,15 @@ bool VulkanSystem::init(VulkanElement* element)
         return false;
     }
 
-    m_surface = new VulkanSurface();
-    if (!m_surface->init(this))
+    m_surface = std::make_shared<VulkanSurface>();
+    if (!m_surface->init(shared_from_this()))
     {
         m_init = false;
 
         return false;
     }
 
-    m_queueFamilies = new VulkanQueueFamilies();
+    m_queueFamilies = std::make_shared<VulkanQueueFamilies>();
     if (!m_queueFamilies->init(m_physicalDevice))
     {
         m_init = false;
@@ -46,16 +46,16 @@ bool VulkanSystem::init(VulkanElement* element)
         return false;
     }
 
-    m_logicalDevice = new VulkanLogicalDevice();
-    if (!m_logicalDevice->init(this))
+    m_logicalDevice = std::make_shared<VulkanLogicalDevice>();
+    if (!m_logicalDevice->init(shared_from_this()))
     {
         m_init = false;
 
         return false;
     }
 
-    m_commandPool = new VulkanCommandPool();
-    if (!m_logicalDevice->init(this))
+    m_commandPool = std::make_shared<VulkanCommandPool>();
+    if (!m_logicalDevice->init(shared_from_this()))
     {
         m_init = false;
 

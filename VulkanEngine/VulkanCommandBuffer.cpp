@@ -8,12 +8,12 @@ VulkanCommandBuffer::VulkanCommandBuffer()
 {
 }
 
-bool VulkanCommandBuffer::init(VulkanElement* vulkanSystem)
+bool VulkanCommandBuffer::init(SharedPtr<VulkanElement> vulkanSystem)
 {
     //TODO should be count of swapchain Frame Buffer size
     m_commandBuffers.resize(1); 
 
-    m_commandPool = ((VulkanSystem*)(vulkanSystem))->m_commandPool;
+    m_commandPool = (std::dynamic_pointer_cast<VulkanSystem>(vulkanSystem)->m_commandPool);
 
     VkCommandBufferAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;

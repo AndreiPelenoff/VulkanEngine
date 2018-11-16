@@ -11,16 +11,16 @@ VulkanLogicalDevice::VulkanLogicalDevice()
 {
 }
 
-bool VulkanLogicalDevice::init(VulkanElement* system)
+bool VulkanLogicalDevice::init(SharedPtr<VulkanElement> system)
 {
     //QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
     VkDeviceQueueCreateInfo queueCreateInfo = {};
     queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queueCreateInfo.queueFamilyIndex = ((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex();
+    queueCreateInfo.queueFamilyIndex = (std::dynamic_pointer_cast<VulkanSystem>(system)->m_queueFamilies->getGraphicFamilyQueueIndex());
     queueCreateInfo.queueCount = 1;
 
-    std::set<uint32_t> uniqueQueueFamilies = { static_cast<uint32_t>(((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex()),   static_cast<uint32_t>(((VulkanSystem*)system)->m_queueFamilies->getTransferFamilyQueueIndex())};
+    std::set<uint32_t> uniqueQueueFamilies = { static_cast<uint32_t>(std::dynamic_pointer_cast<VulkanSystem>(system)->m_queueFamilies->getGraphicFamilyQueueIndex()),   static_cast<uint32_t>(std::dynamic_pointer_cast<VulkanSystem>(system)->m_queueFamilies->getTransferFamilyQueueIndex())};
 
     float queuePriority = 1.0f;
     queueCreateInfo.pQueuePriorities = &queuePriority;
@@ -39,10 +39,10 @@ bool VulkanLogicalDevice::init(VulkanElement* system)
 
     createInfo.enabledLayerCount = 0;
 
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(((VulkanSystem*)system)->m_deviceExtensions.size());
-    createInfo.ppEnabledExtensionNames = ((VulkanSystem*)system)->m_deviceExtensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(std::dynamic_pointer_cast<VulkanSystem>(system)->m_deviceExtensions.size());
+    createInfo.ppEnabledExtensionNames = (std::dynamic_pointer_cast<VulkanSystem>(system))->m_deviceExtensions.data();
 
-    if (vkCreateDevice(((VulkanSystem*)system)->m_physicalDevice->m_device, &createInfo, nullptr, &m_device) != VK_SUCCESS) {
+    if (vkCreateDevice(std::dynamic_pointer_cast<VulkanSystem>(system)->m_physicalDevice->m_device, &createInfo, nullptr, &m_device) != VK_SUCCESS) {
         m_init = false;
 
         return false;
@@ -62,8 +62,8 @@ bool VulkanLogicalDevice::init(VulkanElement* system)
     createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
     createInfo.pQueueCreateInfos = queueCreateInfos.data();
 
-    vkGetDeviceQueue(m_device, ((VulkanSystem*)system)->m_queueFamilies->getGraphicFamilyQueueIndex(), 0, &m_graphicsQueue);
-    vkGetDeviceQueue(m_device, ((VulkanSystem*)system)->m_queueFamilies->getTransferFamilyQueueIndex(), 0, &m_presentQueue);
+    vkGetDeviceQueue(m_device, std::dynamic_pointer_cast<VulkanSystem>(system)->m_queueFamilies->getGraphicFamilyQueueIndex(), 0, &m_graphicsQueue);
+    vkGetDeviceQueue(m_device, std::dynamic_pointer_cast<VulkanSystem>(system)->m_queueFamilies->getTransferFamilyQueueIndex(), 0, &m_presentQueue);
 
     m_init = true;
 

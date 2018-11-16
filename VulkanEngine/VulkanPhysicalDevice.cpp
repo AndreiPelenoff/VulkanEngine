@@ -19,10 +19,10 @@ VulkanPhysicalDevice::VulkanPhysicalDevice(const std::vector<const char*>& devic
     m_deviceExtensions = deviceExtensions;
 }
 
-bool VulkanPhysicalDevice::init(VulkanElement* instance)
+bool VulkanPhysicalDevice::init(SharedPtr<VulkanElement> instance)
 {
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(((VulkanInstance*)(instance))->m_instance, &deviceCount, nullptr);
+    vkEnumeratePhysicalDevices(std::dynamic_pointer_cast<VulkanInstance>(instance)->m_instance, &deviceCount, nullptr);
 
     if (deviceCount == 0)
     {
@@ -33,7 +33,7 @@ bool VulkanPhysicalDevice::init(VulkanElement* instance)
     else
     {
         std::vector<VkPhysicalDevice> devices(deviceCount);
-        vkEnumeratePhysicalDevices(((VulkanInstance*)(instance))->m_instance, &deviceCount, devices.data());
+        vkEnumeratePhysicalDevices(std::dynamic_pointer_cast<VulkanInstance>(instance)->m_instance, &deviceCount, devices.data());
 
         for (const auto& device : devices) {
             if (isDeviceSuitable(device)) {

@@ -15,24 +15,24 @@
 #include "VulkanLogicalDevice.h"
 #include "VulkanCommandPool.h"
 
-class VulkanSystem : public VulkanElement
+class VulkanSystem : public VulkanElement, std::enable_shared_from_this<VulkanSystem>
 {
 public:
     VulkanSystem();
 
     VulkanSystem(Window* window, std::string application_name);
 
-    bool init(VulkanElement* element = nullptr);
+    bool init(SharedPtr<VulkanElement> element = nullptr);
     bool destroy();
 
     ~VulkanSystem();
 
-    VulkanInstance* m_instance;
-    VulkanPhysicalDevice* m_physicalDevice;
-    VulkanSurface* m_surface;
-    VulkanQueueFamilies* m_queueFamilies;
-    VulkanLogicalDevice* m_logicalDevice;
-    VulkanCommandPool* m_commandPool;
+    SharedPtr<VulkanInstance> m_instance;
+    SharedPtr<VulkanPhysicalDevice> m_physicalDevice;
+    SharedPtr<VulkanSurface> m_surface;
+    SharedPtr<VulkanQueueFamilies> m_queueFamilies;
+    SharedPtr<VulkanLogicalDevice> m_logicalDevice;
+    SharedPtr<VulkanCommandPool> m_commandPool;
 
     Window* m_window;
 

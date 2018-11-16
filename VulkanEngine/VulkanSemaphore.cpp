@@ -8,28 +8,28 @@ VulkanSemaphore::VulkanSemaphore()
 {
 }
 
-bool VulkanSemaphore::init(VulkanElement* device)
+bool VulkanSemaphore::init(SharedPtr<VulkanElement> device)
 {
     VkSemaphoreCreateInfo createInfo;
     createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
     createInfo.pNext = NULL;
     createInfo.flags = 0;
 
-    if (vkCreateSemaphore(((VulkanLogicalDevice*)device)->m_device, &createInfo, NULL, &m_semaphore) != VK_SUCCESS)
+    if (vkCreateSemaphore(std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device, &createInfo, NULL, &m_semaphore) != VK_SUCCESS)
     {
         m_init = false;
 
         return false;
     }
 
-    m_device = ((VulkanLogicalDevice*)device)->m_device;
+    m_device = std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device;
 
     m_init = true;
 
     return true;
 }
 
-bool VulkanSemaphore::initForExport(VulkanElement* device, VkExternalSemaphoreHandleTypeFlagBits handleTypes)
+bool VulkanSemaphore::initForExport(SharedPtr<VulkanElement> device, VkExternalSemaphoreHandleTypeFlagBits handleTypes)
 {
     VkExportSemaphoreCreateInfo exportSemaphoreCreateInfo;
     exportSemaphoreCreateInfo.sType = VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO;
@@ -41,14 +41,14 @@ bool VulkanSemaphore::initForExport(VulkanElement* device, VkExternalSemaphoreHa
     createInfo.pNext = &exportSemaphoreCreateInfo;
     createInfo.flags = 0;
 
-    if (vkCreateSemaphore(((VulkanLogicalDevice*)device)->m_device, &createInfo, NULL, &m_semaphore) != VK_SUCCESS)
+    if (vkCreateSemaphore(std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device, &createInfo, NULL, &m_semaphore) != VK_SUCCESS)
     {
         m_init = false;
 
         return false;
     }
 
-    m_device = ((VulkanLogicalDevice*)device)->m_device;
+    m_device = std::dynamic_pointer_cast<VulkanLogicalDevice>(device)->m_device;
     m_handleTypes = handleTypes;
 
     m_init = true;

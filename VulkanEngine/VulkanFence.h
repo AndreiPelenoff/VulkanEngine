@@ -13,8 +13,8 @@ class VulkanFence : public VulkanElement
 public:
     VulkanFence();
 
-    bool init(VulkanElement* device);
-    bool initForExport(VulkanElement* device, VkExternalFenceHandleTypeFlags handleTypes);
+    bool init(SharedPtr<VulkanElement> device);
+    bool initForExport(SharedPtr<VulkanElement>, VkExternalFenceHandleTypeFlags handleTypes);
     bool destroy();
 
     int getHandle(VkExternalFenceHandleTypeFlagBits handleType);

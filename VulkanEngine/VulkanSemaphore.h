@@ -11,8 +11,8 @@ class VulkanSemaphore : public VulkanElement
 public:
     VulkanSemaphore();
 
-    bool init(VulkanElement* device);
-    bool initForExport(VulkanElement* device, VkExternalSemaphoreHandleTypeFlagBits handleTypes);
+    bool init(SharedPtr<VulkanElement> device);
+    bool initForExport(SharedPtr<VulkanElement> device, VkExternalSemaphoreHandleTypeFlagBits handleTypes);
     bool destroy();
 
     int getHandle();

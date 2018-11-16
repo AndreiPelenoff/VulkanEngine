@@ -11,7 +11,7 @@ class VulkanSurface: public VulkanElement
 public:
     VulkanSurface();
 
-    bool init(VulkanElement* vulkanSystem = nullptr);
+    bool init(SharedPtr<VulkanElement> vulkanSystem = nullptr);
 
     bool destroy();
 

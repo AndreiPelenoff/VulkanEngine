@@ -11,7 +11,7 @@ class VulkanLogicalDevice: public VulkanElement
 public:
     VulkanLogicalDevice();
 
-    bool init(VulkanElement* system);
+    bool init(SharedPtr<VulkanElement> system);
     bool destroy();
 
     ~VulkanLogicalDevice();

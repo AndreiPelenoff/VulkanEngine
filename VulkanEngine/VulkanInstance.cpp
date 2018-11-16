@@ -37,7 +37,7 @@ VulkanInstance::VulkanInstance(SDL_Window* window, std::string application_name,
 {
 }
 
-bool VulkanInstance::init(VulkanElement* element)
+bool VulkanInstance::init(SharedPtr<VulkanElement> element)
 {
     VkResult result = vkCreateInstance(&m_createInfo, nullptr, &m_instance);
 

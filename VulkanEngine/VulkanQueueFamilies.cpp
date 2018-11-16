@@ -8,13 +8,13 @@ VulkanQueueFamilies::VulkanQueueFamilies()
 {
 }
 
-bool VulkanQueueFamilies::init(VulkanElement* physical_device)
+bool VulkanQueueFamilies::init(SharedPtr<VulkanElement> physical_device)
 {
     uint32_t queueFamilyCount = 0;
-    vkGetPhysicalDeviceQueueFamilyProperties(((VulkanPhysicalDevice*)physical_device)->m_device, &queueFamilyCount, nullptr);
+    vkGetPhysicalDeviceQueueFamilyProperties(std::dynamic_pointer_cast<VulkanPhysicalDevice>(physical_device)->m_device, &queueFamilyCount, nullptr);
 
     m_queueFamilies.resize(queueFamilyCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(((VulkanPhysicalDevice*)physical_device)->m_device, &queueFamilyCount, m_queueFamilies.data());
+    vkGetPhysicalDeviceQueueFamilyProperties(std::dynamic_pointer_cast<VulkanPhysicalDevice>(physical_device)->m_device, &queueFamilyCount, m_queueFamilies.data());
 
     m_init = true;
 

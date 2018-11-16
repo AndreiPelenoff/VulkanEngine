@@ -14,7 +14,7 @@ class VulkanQueueFamilies: public VulkanElement
 public:
     VulkanQueueFamilies();
 
-    bool init(VulkanElement* physical_device);
+    bool init(SharedPtr<VulkanElement> physical_device);
     bool destroy();
 
     int getGraphicFamilyQueueIndex(VulkanPhysicalDevice* device = nullptr, VulkanElement* surface = nullptr);

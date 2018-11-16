@@ -2,21 +2,25 @@
 #define VULKAN_ELEMENT
 #pragma once
 
+#include <memory>
+
+#define SharedPtr std::shared_ptr
+
 class VulkanElement
 {
 public:
     VulkanElement();
 
-    virtual bool init(VulkanElement* vulkanElement = nullptr) = 0;
+    virtual bool init(SharedPtr<VulkanElement> vulkanElement);
 
-    virtual bool destroy() = 0;
+    virtual bool destroy();
 
     bool isInit()
     {
         return m_init;
     }
 
-    ~VulkanElement();
+    virtual ~VulkanElement();
 
     bool m_init;
 };

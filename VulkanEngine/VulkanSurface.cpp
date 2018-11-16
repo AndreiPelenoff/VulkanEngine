@@ -9,19 +9,19 @@ VulkanSurface::VulkanSurface()
     m_init = false;
 }
 
-bool VulkanSurface::init(VulkanElement* vulkanSystem)
+bool VulkanSurface::init(SharedPtr<VulkanElement> vulkanSystem)
 {
     if (vulkanSystem == nullptr)
     {
         return false;
     }
 
-    if (((VulkanSystem*)vulkanSystem)->m_window == nullptr)
+    if (std::dynamic_pointer_cast<VulkanSystem>(vulkanSystem)->m_window == nullptr)
     {
         return false;
     }
 
-    if (!SDL_Vulkan_CreateSurface(((VulkanSystem*)vulkanSystem)->m_window->window, ((VulkanSystem*)vulkanSystem)->m_instance->m_instance, &m_surface))
+    if (!SDL_Vulkan_CreateSurface(std::dynamic_pointer_cast<VulkanSystem>(vulkanSystem)->m_window->window, std::dynamic_pointer_cast<VulkanSystem>(vulkanSystem)->m_instance->m_instance, &m_surface))
     {
         m_init = false;
         return false;

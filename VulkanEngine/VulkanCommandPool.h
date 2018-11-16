@@ -11,7 +11,7 @@ class VulkanCommandPool : public VulkanElement
 public:
     VulkanCommandPool();
 
-    bool init(VulkanElement* vulkanSystem);
+    bool init(SharedPtr<VulkanElement> vulkanSystem);
     bool destroy();
 
     bool trim();

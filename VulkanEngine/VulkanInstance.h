@@ -17,7 +17,7 @@ public:
     VulkanInstance(SDL_Window* window, std::string application_name, uint32_t application_version, std::string engine_name, uint32_t engine_version, uint32_t vk_api_version);
     VulkanInstance(SDL_Window* window, std::string application_name, std::string engine_name, uint32_t vk_api_version);
 
-    bool init(VulkanElement* element = nullptr);
+    bool init(SharedPtr<VulkanElement> element = nullptr);
     bool destroy();
 
     uint32_t getExtensionCount(SDL_Window* window);
