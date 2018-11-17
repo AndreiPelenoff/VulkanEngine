@@ -6,7 +6,7 @@ VulkanMemoryBarier::VulkanMemoryBarier()
 {
 }
 
-bool VulkanMemoryBarier::init(SharedPtr<VulkanElement> element = nullptr)
+bool VulkanMemoryBarier::init(SharedPtr<VulkanElement> element)
 {
     return false;
 }
